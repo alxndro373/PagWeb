@@ -1,6 +1,7 @@
-import {updateCuidadRequest, deleteCuidadRequest} from '../../api/cuidades.api.js'
 
-const Table = ({title,cols,values}) => {
+const Table = ({title,cols,values, onDelete}) => {
+
+    
     return (
         <div className="container">
         <h2 className="mt-4 mb-4 text-primary">{title}</h2>
@@ -25,7 +26,7 @@ const Table = ({title,cols,values}) => {
                                     
                                     <td key={index}>{value[key]}</td>
                                 ))}
-                                <td><button onClick={async () => await deleteCuidadRequest(index)} className="btn btn-outline-danger">Eliminar</button></td>
+                                <td><button onClick={() => onDelete(index)} className="btn btn-outline-danger">Eliminar</button></td>
                                 <td><button className="btn btn-outline-success">Editar</button></td>
                             </tr>
                         ))
