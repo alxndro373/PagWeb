@@ -28,8 +28,8 @@ const Table = ({title,cols,values, onDelete}) => {
                                     
                                     <td key={index}>{value[key]}</td>
                                 ))}
-                                <td><button onClick={() => onDelete(index)} className="btn btn-outline-danger">Eliminar</button></td>
-                                <td><button className="btn btn-outline-success">Editar</button></td>
+                                <td><button onClick={() => onDelete(index)} className="btn"><i class="bi bi-trash3-fill"></i></button></td>
+                                <td> <button className="btn"><i class="bi bi-pencil-square"></i></button> </td>
                             </tr>
                         ))
                     }
