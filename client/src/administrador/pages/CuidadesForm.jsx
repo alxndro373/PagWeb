@@ -20,9 +20,9 @@ export const CuidadesForm = () => {
     return (
         <>
         <Nav />
-        <div className='container'>
-            <h1 className='text-primary  mt-4 mb-4'>Administrar Cuidades</h1>
-            <div className='border border-primary' style={{backgroundColor: "#cfe2ff"}} >
+        <div className='container w-50 rounded-3' style={{backgroundColor: "#eef6f7"}}>
+            <h1 className='text-dark text-center pt-4 m-4'>Administrar Cuidades</h1>
+            <div>
                 <Foorm fields={fields} handleCreate={handleCreateCuidad} fetch={fetchCuidades} action={action} saveAction={saveAction} showAction={showAction}
                     />
             </div>
