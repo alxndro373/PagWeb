@@ -4,9 +4,9 @@ const Table = ({title,cols,values, onDelete}) => {
     
     return (
         <div className="container">
-        <h2 className="mt-4 mb-4 text-primary">{title}</h2>
-        <div className="border border-primary">
-            <table className="table table-primary">
+        <h2 className="mt-4 mb-4 text-dark">{title}</h2>
+        <div className="border">
+            <table className="table">
                 <thead>
                     
                     <tr className="table-light">
@@ -15,6 +15,8 @@ const Table = ({title,cols,values, onDelete}) => {
                                 <th key={index}>{key}</th>
                             ))
                            }
+                           <th>Eliminar</th>
+                           <th>Actualizar</th>
                     </tr>
                     
                 </thead>
