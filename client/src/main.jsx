@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import {App} from './App.jsx'
-import { Cuidades } from './administrador/pages/Cuidades.jsx'
-import { Autobuses } from './administrador/pages/Autobuses.jsx'
+import { CuidadesForm } from './administrador/pages/CuidadesForm.jsx'
+import { AutobusesForm } from './administrador/pages/AutobusesForm.jsx'
 import ErrorPage  from './pages/ErrorPage.jsx'
 import {
   createBrowserRouter,
@@ -17,11 +17,11 @@ const router = createBrowserRouter([
   },
   {
     path: "administradorCuidad",
-    element: <Cuidades />,
+    element: <CuidadesForm />,
   },
   {
     path: "administradorAutobus",
-    element: <Autobuses />
+    element: <AutobusesForm />
   },
 ]);
 
