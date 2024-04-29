@@ -12,17 +12,15 @@ export const Cuidades = () => {
 
     const {cuidades, fetchCuidades, handleCreateCuidad,handleDeleteCuidad} = useCuidad()    
     
-    let fields = {
-        idCiudad: null,
-        estado: ""
-    }
+    let initalValues = {idCiudad: null,estado: ""}
+    let fields = {idCuidad: null, Estado:""}
     return (
         <>
         <Nav />
         <div className='container w-50 rounded-3' style={{backgroundColor: "#eef6f7"}}>
             <h1 className='text-dark text-center pt-4 m-4'>Administrar Ciudades</h1>
             <div>
-                <Foorm fields={fields} handleCreate={handleCreateCuidad} fetch={fetchCuidades} action={action} saveAction={saveAction} showAction={showAction}
+                <Foorm initialValues={initalValues} fields={fields} holders={fields} handleCreate={handleCreateCuidad} fetch={fetchCuidades} action={action} saveAction={saveAction} showAction={showAction}
                     />
             </div>
         </div>

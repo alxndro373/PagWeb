@@ -10,13 +10,14 @@ export const Usuario = () => {
     const [action, setAction] = useState("")
     const saveAction = () => {setAction('Guardar')}
     const showAction = () => {setAction('Consultar')}
-    let fields = {
+    let initalValues = {
         idUsuario: null,
         nombre: "",
         correo: "",
         numeroCelular: "",
         contraseña: ""
     }
+    let fields = {idUsuario:null,Nombre:"",Correo:"","Numero de Celular":"",contraseña:""}
 
     return (
         <>
@@ -24,7 +25,7 @@ export const Usuario = () => {
         <div className='container w-50 rounded-3' style={{backgroundColor:"#eef6f7"}}>
             <h1 className='text-dark text-center pt-4 m-4'>Administrar Usuarios</h1>
             <div>
-               <Foorm fields={fields} handleCreate={handleCreateUsuario} fetch={fetchUsuarios} action={action} saveAction={saveAction} showAction={showAction} />
+               <Foorm initialValues={initalValues} fields={fields} holders={fields} handleCreate={handleCreateUsuario} fetch={fetchUsuarios} action={action} saveAction={saveAction} showAction={showAction} />
             </div>
         </div>
         {action != "" ? <Table title={'Lista de Usuarios'} cols={fields} values={usuarios} onDelete={handleDeleteUsuario}/> : null}       

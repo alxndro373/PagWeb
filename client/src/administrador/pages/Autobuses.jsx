@@ -10,18 +10,20 @@ export const Autobuses = () => {
     const saveAction = () => {setAction('Guardar')}
     const showAction = () => {setAction('Consultar')}
     const {autobuses, fetchAutobuses,handleCreateAutobus, handleDeleteAutobus} = useAutobus()
-    let fields = {
+    let initialValues = {
         idcamion: null,
         placa: "",
         numAsientos: 0
     }
+    let fields = {idCamion:null,placa:"", "Número de Asientos":0}
+
     return (
         <>
         <Nav />
         <div className='container w-50 rounded-3' style={{backgroundColor:"#eef6f7"}}>
             <h1 className='text-dark text-center pt-4 m-4'>Administrar Autobuses</h1>
             <div>
-               <Foorm fields={fields} handleCreate={handleCreateAutobus} fetch={fetchAutobuses} action={action} saveAction={saveAction} showAction={showAction} />
+               <Foorm initialValues={initialValues} fields={fields} holders={fields} handleCreate={handleCreateAutobus} fetch={fetchAutobuses} action={action} saveAction={saveAction} showAction={showAction} />
             </div>
         </div>
         {action != "" ? <Table title={'Lista de Autobuses'} cols={fields} values={autobuses} onDelete={handleDeleteAutobus}/> : null}       
