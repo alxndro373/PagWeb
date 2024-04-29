@@ -5,7 +5,7 @@ import { useState } from 'react'
 import {useAutobus} from '../../hooks/useAutobus.js'
 
 
-export const AutobusesForm = () => {
+export const Autobuses = () => {
     const [action, setAction] = useState("")
     const saveAction = () => {setAction('Guardar')}
     const showAction = () => {setAction('Consultar')}

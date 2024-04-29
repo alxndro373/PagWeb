@@ -4,7 +4,7 @@ import Table from '../components/Table.jsx'
 import Nav from '../components/Navbar.jsx'
 import Foorm from '../components/Form.jsx'
 
-export const CuidadesForm = () => {
+export const Cuidades = () => {
     
     const [action, setAction] = useState("")
     const saveAction = () => {setAction('Guardar')}
