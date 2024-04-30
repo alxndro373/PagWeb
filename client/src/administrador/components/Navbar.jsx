@@ -18,13 +18,13 @@ const Nav = () => {
                     <Link className="nav-link text-body" to="/administradorAutobus">Autobuses</Link>
                 </li>
                 <li className="nav-item me-5">
-                    <Link className="nav-link text-body" to="/newViaje">Viajes</Link>
+                    <Link className="nav-link text-body" to="/administradorViaje">Viajes</Link>
                 </li>
                 <li className="nav-item me-5">
-                    <Link className="nav-link text-body" to="/administradorCuidad">Cuidades</Link>
+                    <Link className="nav-link text-body" to="/administradorCuidad">Ciudades</Link>
                 </li>
                 <li className="nav-item me-5">
-                    <Link className="nav-link text-body" to="/newUsuario">Usuario</Link>
+                    <Link className="nav-link text-body" to="/administradorUsuario">Usuarios</Link>
                 </li>
                 <li className="nav-item">
                     <Link className="nav-link text-body" to="/newCompra">Compras</Link>
