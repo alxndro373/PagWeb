@@ -6,7 +6,7 @@ import Foorm from '../components/Form.jsx'
 
 export const Usuario = () => {
 
-    const {usuarios, fetchUsuarios, handleCreateUsuario, handleDeleteUsuario} = useUsuario()
+    const {usuarios, fetchUsuarios, handleCreateUsuario, handleDeleteUsuario, handleUpdateUsuario} = useUsuario()
     const [action, setAction] = useState("")
     const saveAction = () => {setAction('Guardar')}
     const showAction = () => {setAction('Consultar')}
@@ -28,7 +28,7 @@ export const Usuario = () => {
                <Foorm initialValues={initalValues} fields={fields} holders={fields} handleCreate={handleCreateUsuario} fetch={fetchUsuarios} action={action} saveAction={saveAction} showAction={showAction} />
             </div>
         </div>
-        {action != "" ? <Table title={'Lista de Usuarios'} cols={fields} values={usuarios} onDelete={handleDeleteUsuario}/> : null}       
+        {action != "" ? <Table title={'Lista de Usuarios'} initialValues={initalValues} cols={fields} holders={fields} values={usuarios} onDelete={handleDeleteUsuario} onUpdate={handleUpdateUsuario}/> : null}       
         </>
     )
 }

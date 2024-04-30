@@ -9,7 +9,7 @@ export const Autobuses = () => {
     const [action, setAction] = useState("")
     const saveAction = () => {setAction('Guardar')}
     const showAction = () => {setAction('Consultar')}
-    const {autobuses, fetchAutobuses,handleCreateAutobus, handleDeleteAutobus} = useAutobus()
+    const {autobuses, fetchAutobuses,handleCreateAutobus, handleDeleteAutobus, handleUpdateAutobus} = useAutobus()
     let initialValues = {
         idcamion: null,
         placa: "",
@@ -26,7 +26,7 @@ export const Autobuses = () => {
                <Foorm initialValues={initialValues} fields={fields} holders={fields} handleCreate={handleCreateAutobus} fetch={fetchAutobuses} action={action} saveAction={saveAction} showAction={showAction} />
             </div>
         </div>
-        {action != "" ? <Table title={'Lista de Autobuses'} cols={fields} values={autobuses} onDelete={handleDeleteAutobus}/> : null}       
+        {action != "" ? <Table title={'Lista de Autobuses'} initialValues={initialValues} cols={fields} holders={fields} values={autobuses} onDelete={handleDeleteAutobus} onUpdate={handleUpdateAutobus}/> : null}       
         </>
     )
 }

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import {createUsuarioRequest,getUsuariosRequest, deleteUsuarioRequest} from '../api/usuarios.api'
+import {createUsuarioRequest,getUsuariosRequest, deleteUsuarioRequest, updateUsuarioRequest} from '../api/usuarios.api'
 
 export const useUsuario = () => {
     const [usuarios, setUsuarios] = useState([])
@@ -16,11 +16,15 @@ export const useUsuario = () => {
         await deleteUsuarioRequest(id)
         fetchUsuarios()
     }
+    const handleUpdateUsuario = async (id,fields) => {
+        await updateUsuarioRequest(id,fields)
+    }
 
     return {
         usuarios,
         fetchUsuarios,
         handleCreateUsuario,
-        handleDeleteUsuario
+        handleDeleteUsuario,
+        handleUpdateUsuario
     }
 }

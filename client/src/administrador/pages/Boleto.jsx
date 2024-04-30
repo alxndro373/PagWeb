@@ -8,7 +8,7 @@ export const Boletos = () => {
     const [action, setAction] = useState("")
     const saveAction = () => {setAction('Guardar')}
     const showAction = () => {setAction('Consultar')}
-    const {boletos, fetchBoletos,handleCreateBoleto, handleDeleteBoleto} = useBoleto()
+    const {boletos, fetchBoletos,handleCreateBoleto, handleDeleteBoleto, handleUpdateBoleto} = useBoleto()
     
     let initialValues = {idBoleto:null,idUsuario:null,idViaje:null,asiento:0,fecha:"",hora:"",precio:0.0}
     let fields = {idBoleto:null,idUsuario:null,idViaje:null,"Número de asiento":0,fecha:"",hora:"",precio:0.0}
@@ -22,7 +22,7 @@ export const Boletos = () => {
                <Foorm initialValues={initialValues} fields={fields} holders={holders} handleCreate={handleCreateBoleto} fetch={fetchBoletos} action={action} saveAction={saveAction} showAction={showAction} />
             </div>
         </div>
-        {action != "" ? <Table title={'Lista de Boletos'} cols={fields} values={boletos} onDelete={handleDeleteBoleto}/> : null}       
+        {action != "" ? <Table title={'Lista de Boletos'} initialValues={initialValues} cols={fields} holders={holders} values={boletos} onDelete={handleDeleteBoleto} onUpdate={handleUpdateBoleto}/> : null}       
         </>
     )
 }

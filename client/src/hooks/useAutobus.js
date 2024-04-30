@@ -1,5 +1,5 @@
 import { useState } from "react"
-import {createAutobusRequest,getAutobusesRequest, deleteAutobusRequest} from '../api/autobuses.api'
+import {createAutobusRequest,getAutobusesRequest, deleteAutobusRequest, updateAutobusRequest} from '../api/autobuses.api'
 
 export const useAutobus = () => {
     const [autobuses, setAutobuses] = useState([])
@@ -16,11 +16,15 @@ export const useAutobus = () => {
         await deleteAutobusRequest(id)
         fetchAutobuses()
     }
+    const handleUpdateAutobus = async (id,fields) => {
+        await updateAutobusRequest(id,fields)
+    }
 
     return {
         autobuses,
         fetchAutobuses,
         handleCreateAutobus,
-        handleDeleteAutobus
+        handleDeleteAutobus,
+        handleUpdateAutobus
     }
 }
