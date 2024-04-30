@@ -4,6 +4,7 @@ import {PORT} from './config.js'
 import cuidadesRoutes from './routes/cuidades.routes.js'
 import autobusesRoutes from './routes/autobuses.routes.js'
 import usuariosRoutes from './routes/usuarios.routes.js'
+import viajesRoutes from './routes/viajes.routes.js'
 
 const app = express()
 
@@ -12,6 +13,7 @@ app.use(express.json())
 app.use(cuidadesRoutes)
 app.use(autobusesRoutes)
 app.use(usuariosRoutes)
+app.use(viajesRoutes)
 
 app.listen(PORT)
 
