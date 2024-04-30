@@ -1,5 +1,5 @@
 import { useState } from "react"
-import {createCuidadRequest,getCuidadesRequest, deleteCuidadRequest} from '../api/cuidades.api'
+import {createCuidadRequest,getCuidadesRequest, deleteCuidadRequest, updateCuidadRequest} from '../api/cuidades.api'
 
 export const useCuidad = () => {
     const [cuidades, setCuidades] = useState([])
@@ -16,11 +16,15 @@ export const useCuidad = () => {
         await deleteCuidadRequest(id)
         fetchCuidades()
     }
+    const handleUpdateCuidad = async (id,fields) => {
+        await updateCuidadRequest(id,fields)
+    }
 
     return {
         cuidades,
         fetchCuidades,
         handleCreateCuidad,
-        handleDeleteCuidad
+        handleDeleteCuidad,
+        handleUpdateCuidad
     }
 }
