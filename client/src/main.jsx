@@ -7,6 +7,7 @@ import { Cuidades } from './administrador/pages/Cuidades.jsx'
 import { Autobuses } from './administrador/pages/Autobuses.jsx'
 import {Usuario} from './administrador/pages/Usuario.jsx'
 import {Viajes} from './administrador/pages/Viajes.jsx'
+import {Boletos} from './administrador/pages/Boleto.jsx'
 import ErrorPage  from './pages/ErrorPage.jsx'
 import {
   createBrowserRouter,
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: "administradorViaje",
     element: <Viajes />
+  },
+  {
+    path: "administradorBoleto",
+    element: < Boletos />
   }
 ]);
 
