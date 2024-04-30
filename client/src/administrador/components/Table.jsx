@@ -1,6 +1,13 @@
+import { useState } from "react"
+import PopupModal from "./PopupModal"
 
-const Table = ({title,cols,values, onDelete}) => {
 
+const Table = ({title,initialValues,cols,holders,values, onDelete, onUpdate}) => {
+
+    const [show, setShow] = useState(false)
+
+    const handleClose = () => setShow(false)
+    const handleShow = () => setShow(true)
     
     return (
         <div className="container">
@@ -29,14 +36,14 @@ const Table = ({title,cols,values, onDelete}) => {
                                     <td key={index}>{value[key]}</td>
                                 ))}
                                 <td><button onClick={() => onDelete(index)} className="btn"><i className="bi bi-trash3-fill"></i></button></td>
-                                <td> <button className="btn"><i className="bi bi-pencil-square"></i></button> </td>
+                                <td><button onClick={() => handleShow()} className="btn"><i className="bi bi-pencil-square"></i></button> </td>
                             </tr>
                         ))
                     }
                 </tbody>
             </table>
         </div>
-
+        <PopupModal show={show} handleClose={handleClose} handleUpdate={onUpdate} initialValues={initialValues} fields={cols} holders={holders}/>
     </div>
     )
 }
