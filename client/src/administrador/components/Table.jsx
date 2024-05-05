@@ -2,12 +2,24 @@ import { useState } from "react"
 import PopupModal from "./PopupModal"
 
 
-const Table = ({title,initialValues,cols,holders,values, onDelete, onUpdate}) => {
+const Table = ({title,initialValues,cols,holders,values, onDelete, onUpdate, onFetch}) => {
 
     const [show, setShow] = useState(false)
 
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
+
+    const getIdName = (value) => {
+        let id
+        let res
+        for(let key in value){
+            if(key.startsWith("id")){
+                ({[key]: id, ...res} = value)
+                break
+            }
+        }
+        return id
+    }
     
     return (
         <div className="container">
@@ -35,7 +47,7 @@ const Table = ({title,initialValues,cols,holders,values, onDelete, onUpdate}) =>
                                     
                                     <td key={index}>{value[key]}</td>
                                 ))}
-                                <td><button onClick={() => onDelete(index)} className="btn"><i className="bi bi-trash3-fill"></i></button></td>
+                                <td><button onClick={() => onDelete(getIdName(value))} className="btn"><i className="bi bi-trash3-fill"></i></button></td>
                                 <td><button onClick={() => handleShow()} className="btn"><i className="bi bi-pencil-square"></i></button> </td>
                             </tr>
                         ))
@@ -43,7 +55,7 @@ const Table = ({title,initialValues,cols,holders,values, onDelete, onUpdate}) =>
                 </tbody>
             </table>
         </div>
-        <PopupModal show={show} handleClose={handleClose} handleUpdate={onUpdate} initialValues={initialValues} fields={cols} holders={holders}/>
+        <PopupModal show={show} handleClose={handleClose} onFetch={onFetch} handleUpdate={onUpdate} initialValues={initialValues} fields={cols} holders={holders} />
     </div>
     )
 }
