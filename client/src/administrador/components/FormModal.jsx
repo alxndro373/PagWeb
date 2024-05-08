@@ -1,6 +1,6 @@
 import {Form, Formik} from 'formik'
 
-const FormModal = ({initialValues, fields, holders, handleUpdate}) => {
+const FormModal = ({initialValues, fields, holders, handleUpdate, onFetch}) => {
     let arrInitialValues = Object.keys(initialValues)
     let arrHolders = Object.keys(holders)
     const onUpdate = async (values) => {
@@ -13,6 +13,7 @@ const FormModal = ({initialValues, fields, holders, handleUpdate}) => {
             }
         }
         await handleUpdate(id,res) 
+        await onFetch()
         
     }
     return (
