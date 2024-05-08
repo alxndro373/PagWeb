@@ -1,5 +1,5 @@
 import { useState } from "react"
-import {createUsuarioRequest,getUsuariosRequest, deleteUsuarioRequest, updateUsuarioRequest} from '../api/usuarios.api'
+import {createUsuarioRequest,getUsuariosRequest, deleteUsuarioRequest, updateUsuarioRequest,getPasswordAndNameRequest} from '../api/usuarios.api'
 
 export const useUsuario = () => {
     const [usuarios, setUsuarios] = useState([])
@@ -17,7 +17,13 @@ export const useUsuario = () => {
         fetchUsuarios()
     }
     const handleUpdateUsuario = async (id,fields) => {
-        await updateUsuarioRequest(id,fields)
+        const result = await updateUsuarioRequest(id,fields)
+        if(result.status == 200 && result.data.affectedRows > 0) alert("Actualizado Correctamente")
+        else alert("Actualizacion Fallida")
+    }
+    const handleGetPasswordAndName = async (correo) => {
+        const result = await getPasswordAndNameRequest(correo)
+        return result
     }
 
     return {
@@ -25,6 +31,7 @@ export const useUsuario = () => {
         fetchUsuarios,
         handleCreateUsuario,
         handleDeleteUsuario,
-        handleUpdateUsuario
+        handleUpdateUsuario,
+        handleGetPasswordAndName
     }
 }
