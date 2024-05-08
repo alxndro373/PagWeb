@@ -29,7 +29,7 @@ export const createViaje = async (req, res) => {
         const idDestino = destinoRes[0].idCiudad
         const [result] = await pool.query('INSERT INTO viaje(idViaje,idOrigen,idDestino,idCamion,fecha,hora) values (?,?,?,?,?,?)', [idViaje,idOrigen,idDestino,idCamion,fecha,hora])
         res.json({
-            idviaje: result.insertId,
+            idViaje: result.insertId,
             idOrigen,
             idDestino,
             idCamion,
@@ -43,7 +43,12 @@ export const createViaje = async (req, res) => {
 
 export const updateViaje = async (req, res) => {
     try {
-        const [result] = await pool.query('UPDATE viaje SET ? WHERE idViaje = ?', [req.body,req.params.id])
+        const {idViaje,Origen,Destino,idCamion,fecha,hora} = req.body
+        const [origenRes] = await pool.query('SELECT idCiudad FROM ciudad where estado = ?', [Origen])
+        const idOrigen = origenRes[0].idCiudad
+        const [destinoRes] = await pool.query('SELECT idCiudad FROM ciudad where estado = ?', [Destino])
+        const idDestino = destinoRes[0].idCiudad
+        const [result] = await pool.query('UPDATE viaje SET idViaje=?,idOrigen=?,idDestino=?,idCamion=?,fecha=?,hora=? WHERE idViaje = ?', [idViaje,idOrigen,idDestino,idCamion,fecha,hora,req.params.id])
         res.json(result)
         console.log(result)
     } catch (error) {

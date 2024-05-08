@@ -4,8 +4,8 @@ import PopupModal from "./PopupModal"
 
 const Table = ({title,initialValues,cols,holders,values, onDelete, onUpdate, onFetch}) => {
 
-    const [show, setShow] = useState(false)
 
+    const [show, setShow] = useState(false)
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
 

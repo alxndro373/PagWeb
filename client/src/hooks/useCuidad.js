@@ -17,7 +17,10 @@ export const useCuidad = () => {
         fetchCuidades()
     }
     const handleUpdateCuidad = async (id,fields) => {
-        await updateCuidadRequest(id,fields)
+        const result = await updateCuidadRequest(id,fields)
+        console.log(result)
+        if(result.status == 200 && result.data.affectedRows > 0) alert("Actualizado Correctamente")
+        else alert("Actualizacion Fallida")
     }
 
     return {

@@ -12,22 +12,22 @@ const Nav = () => {
             <ul className="nav d-flex align-items-center ">
             <img src={logo} alt="" style={{width:150, height: "60px", objectFit:"cover"} } />
                 <li className="nav-item me-5">
-                    <Link className="nav-link text-body" to="/">Inicio</Link>
+                    <Link className="nav-link text-body" to="/administrador">Inicio</Link>
                 </li>
                 <li className="nav-item me-5">
-                    <Link className="nav-link text-body" to="/administradorAutobus">Autobuses</Link>
+                    <Link className="nav-link text-body" to="/administrador/autobus">Autobuses</Link>
                 </li>
                 <li className="nav-item me-5">
-                    <Link className="nav-link text-body" to="/administradorViaje">Viajes</Link>
+                    <Link className="nav-link text-body" to="/administrador/viaje">Viajes</Link>
                 </li>
                 <li className="nav-item me-5">
-                    <Link className="nav-link text-body" to="/administradorCuidad">Ciudades</Link>
+                    <Link className="nav-link text-body" to="/administrador/cuidad">Ciudades</Link>
                 </li>
                 <li className="nav-item me-5">
-                    <Link className="nav-link text-body" to="/administradorUsuario">Usuarios</Link>
+                    <Link className="nav-link text-body" to="/administrador/usuario">Usuarios</Link>
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link text-body" to="/administradorBoleto">Boletos</Link>
+                    <Link className="nav-link text-body" to="/administrador/boleto">Boletos</Link>
                 </li>
             </ul>
             

@@ -17,7 +17,9 @@ export const useBoleto = () => {
         fetchBoletos()
     }
     const handleUpdateBoleto = async (id,fields) => {
-        await updateBoletoRequest(id,fields)
+        const result = await updateBoletoRequest(id,fields)
+        if(result.status == 200 && result.data.affectedRows > 0) alert("Actualizado Correctamente")
+        else alert("Actualizacion Fallida")
     }
 
     return {

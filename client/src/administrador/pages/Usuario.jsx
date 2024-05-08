@@ -28,7 +28,7 @@ export const Usuario = () => {
                <Foorm initialValues={initalValues} fields={fields} holders={fields} handleCreate={handleCreateUsuario} fetch={fetchUsuarios} action={action} saveAction={saveAction} showAction={showAction} />
             </div>
         </div>
-        {action != "" ? <Table title={'Lista de Usuarios'} initialValues={initalValues} cols={fields} holders={fields} values={usuarios} onDelete={handleDeleteUsuario} onUpdate={handleUpdateUsuario}/> : null}       
+        {action != "" ? <Table title={'Lista de Usuarios'} initialValues={initalValues} cols={fields} holders={fields} values={usuarios} onFetch={fetchUsuarios} onDelete={handleDeleteUsuario} onUpdate={handleUpdateUsuario}/> : null}       
         </>
     )
 }

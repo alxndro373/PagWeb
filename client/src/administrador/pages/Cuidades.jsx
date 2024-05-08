@@ -25,7 +25,7 @@ export const Cuidades = () => {
             </div>
         </div>
         
-        {action != "" ? <Table title={'Lista de Ciudades'} onUpdate={handleUpdateCuidad} initialValues={initalValues} cols={fields} holders={fields} values={cuidades} onDelete={handleDeleteCuidad}/> : null}       
+        {action != "" ? <Table title={'Lista de Ciudades'} onFetch={fetchCuidades} onUpdate={handleUpdateCuidad} initialValues={initalValues} cols={fields} holders={fields} values={cuidades} onDelete={handleDeleteCuidad}/> : null}       
         </>
     )
 }

@@ -1,8 +1,10 @@
 import {Form, Formik} from 'formik'
 
-const Foorm = ({initialValues, fields, holders, handleCreate, fetch, action, saveAction, showAction}) => {
+
+const Foorm = ({initialValues, fields, holders,handleCreate,fetch,action,saveAction,showAction}) => {
     let arrInitialValues = Object.keys(initialValues)
     let arrHolders = Object.keys(holders)
+   
     return (
         <Formik
             initialValues={
@@ -34,8 +36,6 @@ const Foorm = ({initialValues, fields, holders, handleCreate, fetch, action, sav
                                 <input className='form-control bg-light' type="text" name={arrInitialValues[key]} onChange={handleChange} placeholder={arrHolders[key]} />
                             </div>
                         ))
-                        
-
                     }
                     <div className='grid text-center'>
                         <button className='m-3 btn btn-light' type='submit' onClick={() => saveAction()}>Guardar</button>

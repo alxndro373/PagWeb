@@ -1,5 +1,5 @@
 import { useState } from "react"
-import {createViajeRequest,getViajesRequest, deleteViajeRequest} from '../api/viajes.api'
+import {createViajeRequest,getViajesRequest, deleteViajeRequest, updateViajeRequest} from '../api/viajes.api'
 
 export const useViaje = () => {
     const [viajes, setViajes] = useState([])
@@ -16,11 +16,18 @@ export const useViaje = () => {
         await deleteViajeRequest(id)
         fetchViajes()
     }
+    const handleUpdateViaje = async (id,fields) => {
+        const result = await updateViajeRequest(id,fields)
+        console.log("-->", result)
+        if(result.status == 200 && result.data.affectedRows > 0) alert("Actualizado Correctamente")
+        else alert("Actualizacion Fallida")
+    }
 
     return {
         viajes,
         fetchViajes,
         handleCreateViaje,
-        handleDeleteViaje
+        handleDeleteViaje,
+        handleUpdateViaje
     }
 }

@@ -4,8 +4,8 @@ import {Home} from './administrador/pages/Home.jsx'
 export const App = () => {
   return (
     <>
-    <Nav />
-    <Home />
+    {/* <Nav />
+    <Home /> */}
     </>
   )
 }

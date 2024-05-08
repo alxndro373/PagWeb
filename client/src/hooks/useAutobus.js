@@ -2,6 +2,7 @@ import { useState } from "react"
 import {createAutobusRequest,getAutobusesRequest, deleteAutobusRequest, updateAutobusRequest} from '../api/autobuses.api'
 
 export const useAutobus = () => {
+   
     const [autobuses, setAutobuses] = useState([])
 
     const fetchAutobuses = async () => {
@@ -17,7 +18,9 @@ export const useAutobus = () => {
         fetchAutobuses()
     }
     const handleUpdateAutobus = async (id,fields) => {
-        await updateAutobusRequest(id,fields)
+        const result = await updateAutobusRequest(id,fields)
+        if(result.status == 200 && result.data.affectedRows > 0) alert("Actualizado Correctamente")
+        else alert("Actualizacion Fallida")
     }
 
     return {

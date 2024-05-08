@@ -12,7 +12,7 @@ export const Boletos = () => {
     
     let initialValues = {idBoleto:null,idUsuario:null,idViaje:null,asiento:0,fecha:"",hora:"",precio:0.0}
     let fields = {idBoleto:null,idUsuario:null,idViaje:null,"Número de asiento":0,fecha:"",hora:"",precio:0.0}
-    let holders = {idBoleto:null,idUsuario:null,idViaje:null,"Número de asiento":0,"AAA-MM-DD":"","HH-MM-SS":"",precio:0.0}
+    let holders = {idBoleto:null,idUsuario:null,idViaje:null,"Número de asiento":0,"AAA-MM-DD":"","HH:MM:SS":"",precio:0.0}
     return (
         <>
         <Nav />
@@ -22,7 +22,7 @@ export const Boletos = () => {
                <Foorm initialValues={initialValues} fields={fields} holders={holders} handleCreate={handleCreateBoleto} fetch={fetchBoletos} action={action} saveAction={saveAction} showAction={showAction} />
             </div>
         </div>
-        {action != "" ? <Table title={'Lista de Boletos'} initialValues={initialValues} cols={fields} holders={holders} values={boletos} onDelete={handleDeleteBoleto} onUpdate={handleUpdateBoleto}/> : null}       
+        {action != "" ? <Table title={'Lista de Boletos'} onFetch={fetchBoletos} initialValues={initialValues} cols={fields} holders={holders} values={boletos} onDelete={handleDeleteBoleto} onUpdate={handleUpdateBoleto}/> : null}       
         </>
     )
 }

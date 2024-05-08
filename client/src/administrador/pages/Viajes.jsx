@@ -9,10 +9,10 @@ export const Viajes = () => {
     const [action, setAction] = useState("")
     const saveAction = () => {setAction('Guardar')}
     const showAction = () => {setAction('Consultar')}
-    const {viajes, fetchViajes,handleCreateViaje, handleDeleteViaje} = useViaje()
+    const {viajes, fetchViajes,handleCreateViaje, handleDeleteViaje, handleUpdateViaje} = useViaje()
     
     let fields = {idViaje: null,Origen:"",Destino:"",idCamion:null,fecha:"",hora:""}
-    let holders = {idViaje:null,Origen:"",Destino:"",idCamion:null,"AAAA-MM-DD":"","HH-MM-SS":""}
+    let holders = {idViaje:null,Origen:"",Destino:"",idCamion:null,"AAAA-MM-DD":"","HH:MM:SS":""}
     return (
         <>
         <Nav />
@@ -22,7 +22,7 @@ export const Viajes = () => {
                <Foorm initialValues={fields} fields={fields} holders={holders} handleCreate={handleCreateViaje} fetch={fetchViajes} action={action} saveAction={saveAction} showAction={showAction} />
             </div>
         </div>
-        {action != "" ? <Table title={'Lista de Viajes'} cols={fields} values={viajes} onDelete={handleDeleteViaje}/> : null}       
+        {action != "" ? <Table title={'Lista de Viajes'} onFetch={fetchViajes} initialValues={fields} cols={fields} holders={holders} values={viajes} onDelete={handleDeleteViaje} onUpdate={handleUpdateViaje}/> : null}       
         </>
     )
 }
