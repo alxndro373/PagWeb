@@ -1,10 +1,12 @@
 import autobus from '../assets/adu_bus.png'
+import Nav from '../components/Navbar'
 
 
-export const Home = () => {
+export const HomeAdmin = () => {
 
     return (
         <>
+            < Nav />
             <div className="container">
                 <section className='d-flex justify-content-between align-items-center'>
                     <div>
