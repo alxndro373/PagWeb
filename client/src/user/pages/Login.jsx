@@ -28,7 +28,7 @@ export const Login = () => {
                                     if(contra === values.contraseña){
                                         changeAuthenticated(true)
                                         getName(res.data.nombre)
-                                        navigate("/")
+                                        res.data.nombre === 'administrador' ? navigate("/administrador") : navigate("/")
                                     }else alert("Correo o Contraseña incorrectas")
                                 } catch (error) {
                                     console.log(error)
