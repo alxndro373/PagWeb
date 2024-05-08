@@ -4,17 +4,19 @@ import {
     getUsuario,
     createUsuario,
     updateUsuario,
-    deleteUsuario
+    deleteUsuario,
+    getPasswordAndName
 
 } from '../controllers/usuarios.controllers.js'
 
 const router = Router()
 
-router.get('/Usuarios', getUsuarios)
-router.get('/Usuario/:id', getUsuario)
-router.post('/Usuario', createUsuario)
-router.put('/Usuario/:id', updateUsuario)
-router.delete('/Usuario/:id', deleteUsuario)
+router.get('/usuarios', getUsuarios)
+router.get('/usuario/:id', getUsuario)
+router.get('/usuario/correo/:correo', getPasswordAndName)
+router.post('/usuario', createUsuario)
+router.put('/usuario/:id', updateUsuario)
+router.delete('/usuario/:id', deleteUsuario)
 
 
 export default router
