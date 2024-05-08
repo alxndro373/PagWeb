@@ -12,7 +12,7 @@ export const getUsuarios = async (req, res) => {
 export const getUsuario = async (req, res) => {
     try {
         const [result] = await pool.query('SELECT * FROM usuario WHERE idUsuario = ?', [req.params.id])
-        if (result.length === 0) return res.status(404).json({ message: "ruta not found" })
+        if (result.length === 0) return res.status(404).json({ message: "usuario not found" })
         res.json(result[0])
     } catch (error) {
         console.log(error)
@@ -49,8 +49,18 @@ export const updateUsuario = async (req, res) => {
 export const deleteUsuario = async (req, res) => {
     try {
         const [result] = await pool.query('DELETE FROM usuario WHERE idUsuario = ?', [req.params.id])
-        if (result.affectedRows === 0) return res.status(404).json({ message: "ruta not found" })
+        if (result.affectedRows === 0) return res.status(404).json({ message: "usuario not found" })
         return res.sendStatus(204)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getPasswordAndName = async (req,res) => {
+    try {
+        const [result] = await pool.query('SELECT nombre,contraseña FROM usuario WHERE correo = ?',[req.params.correo])
+        if (result.length === 0) return res.status(404).json({ message: "password not found" })
+        res.json(result[0])
     } catch (error) {
         console.log(error)
     }
