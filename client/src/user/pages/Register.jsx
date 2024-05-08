@@ -41,7 +41,7 @@ export const Register = () => {
                                     </div>
                                     <div className='mb-3'>
                                         <label>Contraseña</label>
-                                        <input type="contrasenias" onChange={handleChange} name='contraseña' placeholder='Ingresa una contraseña' className='form-control' style={{ background: "linear-gradient(#ffffff, #9ed1d6)", borderRadius: "10px" }} />
+                                        <input type="password" onChange={handleChange} name='contraseña' placeholder='Ingresa una contraseña' className='form-control' style={{ background: "linear-gradient(#ffffff, #9ed1d6)", borderRadius: "10px" }} />
                                     </div>
                                     <div className='d-grid'>
                                         <button type='submit' className='btn fw-bold' style={{ background: "linear-gradient(#94d6c1, #9ed1d6)", border: "none", maxWidth: "40%", marginLeft: "30%" }}>Registrar</button>

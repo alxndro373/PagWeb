@@ -43,7 +43,7 @@ export const Login = () => {
                                     </div>
                                     <div className='mb-3'>
                                         <label className='form-label'>Contraseña</label>
-                                        <input className='form-control' type="text" name='contraseña' placeholder='contraseña' onChange={handleChange} style={{ background: "linear-gradient(#ffffff, #9ed1d6)", borderRadius: "10px" }} />
+                                        <input className='form-control' type="password" name='contraseña' placeholder='contraseña' onChange={handleChange} style={{ background: "linear-gradient(#ffffff, #9ed1d6)", borderRadius: "10px" }} />
                                     </div>
                                     <div className='d-grid'>
                                         <button type='submit' className='btn fw-bold' style={{ background: "linear-gradient(#94d6c1, #9ed1d6)", border: "none", maxWidth: "40%", marginLeft: "27%" }}>Ingresar</button>
