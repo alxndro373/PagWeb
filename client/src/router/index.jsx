@@ -11,6 +11,7 @@ import { Home } from "../user/pages/Home";
 import {HomeAdmin} from "../administrador/pages/Home"
 import { Faq } from "../user/pages/Faq"
 import { ProtectedRoute } from "../administrador/routes/ProtectedRoute";
+import { Terminal } from "../user/pages/Terminal";
 
 
 export const router = createBrowserRouter([
@@ -18,6 +19,10 @@ export const router = createBrowserRouter([
         path: "/",
         element: <Home />,
         errorElement: <ErrorPage />
+    },
+    {
+        path: "Terminal",
+        element: <Terminal />
     },
     {
         path: "Atencion",
