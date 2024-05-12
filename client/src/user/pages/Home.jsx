@@ -2,9 +2,17 @@ import Nav from '../components/Navbar.jsx'
 import p1 from '../assets/travel2.jpg'
 import p2 from '../assets/travel3.jpg'
 import p3 from '../assets/collage.jpeg'
-import i1 from '../assets/busIcon.png'
 import fondo from '../assets/backTravel.jpeg'
+import { DropDown } from '../components/DropDown.jsx'
+import { useCuidad } from '../../hooks/useCuidad.js'
+import { useEffect } from 'react'
 export const Home = () => {
+
+    const {ciudades,fetchCuidades} = useCuidad()
+    useEffect(() => {
+        fetchCuidades()
+    },[])
+   
 
     return (
         <>
@@ -34,17 +42,9 @@ export const Home = () => {
                             </div>
 
                             <div className='row' style={{ height: "70%" }}>
-                                <div className='col-md-10 offset-md-9' style={{ background: "" }}> {/* #E3E4E5 */}
-                                    <div className='fw-bold' style={{ fontSize: "20px", background: "white", marginTop: "9%" }}>
-                                        <label htmlFor="origen">Origen</label>
-                                        <select name="origen" id="idOrigen" style={{ width: "90%", borderRadius: "5px", border: "none" }}><option value="" disabled selected>Selecciona una opción</option></select>
-                                        <img src={i1} />
-                                    </div>
-                                    <div className='fw-bold mt-4' style={{ fontSize: "20px", background: "white" }}>
-                                        <label htmlFor="destino">Destino</label>
-                                        <select name="destino" id="idDestino" style={{ width: "90%", borderRadius: "5px", border: "none" }} ><option value="" disabled selected>Selecciona una opción</option></select>
-                                        <img src={i1} />
-                                    </div>
+                                <div className='col-md-10 offset-md-9 ' style={{ background: "" }}> {/* #E3E4E5 */}
+                                    < DropDown title={"Origen"} items={ciudades}/>
+                                    < DropDown title={"Destino"} items={ciudades}/>
                                     <div className='d-grid mb-2'>
                                         <button className='btn fw-bold' style={{ background: "linear-gradient(#ffffff, #9ed1d6)", maxWidth: "40%", border: "none", marginLeft: "30%", marginTop: "5%" }}>Buscar</button>
                                     </div>
