@@ -1,5 +1,5 @@
 import { useState } from "react"
-import {createViajeRequest,getViajesRequest, deleteViajeRequest, updateViajeRequest} from '../api/viajes.api'
+import {createViajeRequest,getViajesRequest, deleteViajeRequest, updateViajeRequest, validOriginAndDestination} from '../api/viajes.api'
 
 export const useViaje = () => {
     const [viajes, setViajes] = useState([])
@@ -22,12 +22,17 @@ export const useViaje = () => {
         if(result.status == 200 && result.data.affectedRows > 0) alert("Actualizado Correctamente")
         else alert("Actualizacion Fallida")
     }
+    const handleValidOriginAndDestination = async (origin,destination) => {
+        const result = await validOriginAndDestination(origin,destination)
+        return result
+    }
 
     return {
         viajes,
         fetchViajes,
         handleCreateViaje,
         handleDeleteViaje,
-        handleUpdateViaje
+        handleUpdateViaje,
+        handleValidOriginAndDestination
     }
 }
