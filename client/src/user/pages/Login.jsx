@@ -1,4 +1,4 @@
-import { Link,useNavigate } from 'react-router-dom'
+import { Link,useNavigate,Navigate } from 'react-router-dom'
 import { Formik, Form } from 'formik'
 import Nav from '../components/Navbar.jsx'
 import logo from '../assets/ADU.png'
@@ -7,8 +7,9 @@ import { useAuth } from '../../auth/AuthProvider.jsx'
 
 export const Login = () => {
     const {handleGetPasswordAndName} = useUsuario()
-    const {changeAuthenticated,getName} = useAuth()
+    const {changeAuthenticated,getName,isAuthenticated} = useAuth()
     const navigate = useNavigate()
+    if(isAuthenticated) return <Navigate to="/" />
     return (
         <>
             <Nav />

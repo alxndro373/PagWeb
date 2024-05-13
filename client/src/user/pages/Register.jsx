@@ -1,10 +1,14 @@
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { Formik, Form } from 'formik'
 import { createUsuarioRequest } from '../../api/usuarios.api.js'
 import Nav from '../components/Navbar.jsx'
 import logo from '../assets/ADU.png'
+import { useAuth } from '../../auth/AuthProvider.jsx'
 
 export const Register = () => {
+
+    const {isAuthenticated} = useAuth()
+    if(isAuthenticated) return <Navigate to="/" />
 
     return (
         <>
