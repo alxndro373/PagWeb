@@ -7,9 +7,11 @@ import { DropDown } from '../components/DropDown.jsx'
 import { useCuidad } from '../../hooks/useCuidad.js'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { useAuth } from '../../auth/AuthProvider.jsx'
 export const Home = () => {
 
     const navigate = useNavigate()
+    const {isAuthenticated} = useAuth()
     const {ciudades,fetchCuidades} = useCuidad()
     const [destination,setDestination] = useState('Veracruz')
     const [origin,setOrigin] = useState('Veracruz')
@@ -18,6 +20,10 @@ export const Home = () => {
     useEffect(() => {
         fetchCuidades()
     },[])
+
+    const searchTravel = () => {
+        isAuthenticated ? navigate(`viajes/${origin}/${destination}`) : alert("Tienes que Iniciar Sesion primero")
+    }
    
     return (
         <>
@@ -51,7 +57,7 @@ export const Home = () => {
                                     < DropDown title={"Origen"} items={ciudades} onChange={handleSelectChangeOrigin}/>
                                     < DropDown title={"Destino"} items={ciudades} onChange={handleSelectChangeDestination}/>
                                     <div className='d-grid mb-2'>
-                                        <button onClick={() => navigate(`viajes/${origin}/${destination}`)} className='btn fw-bold' style={{ background: "linear-gradient(#ffffff, #9ed1d6)", maxWidth: "40%", border: "none", marginLeft: "30%", marginTop: "5%" }}>Buscar</button>
+                                        <button onClick={() => searchTravel()} className='btn fw-bold' style={{ background: "linear-gradient(#ffffff, #9ed1d6)", maxWidth: "40%", border: "none", marginLeft: "30%", marginTop: "5%" }}>Buscar</button>
                                     </div>
                                 </div>
                             </div>

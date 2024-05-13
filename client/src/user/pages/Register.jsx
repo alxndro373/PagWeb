@@ -1,5 +1,5 @@
 import { Link, Navigate } from 'react-router-dom'
-import { Formik, Form } from 'formik'
+import { Formik, Form, ErrorMessage } from 'formik'
 import { createUsuarioRequest } from '../../api/usuarios.api.js'
 import Nav from '../components/Navbar.jsx'
 import logo from '../assets/ADU.png'
@@ -22,6 +22,14 @@ export const Register = () => {
                         <h3 className='text-center mb-4 fw-bold p-1'>Registrate</h3>
                         <Formik
                             initialValues={{ idUsuario: null, nombre: "", correo: "", numeroCelular: "", contraseña: "" }}
+                            validate={values => {
+                                const errors = {}
+                                if(!values.correo) errors.correo = 'Requerido'
+                                else if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.correo)) errors.correo = 'correo invalido'
+                                if(!values.nombre) errors.nombre = 'Requerido'
+                                if(!values.contraseña) errors.contraseña = 'Requerido'
+                                return errors
+                            }}
                             onSubmit={async (values) => {
                                 try {
                                         values.idUsuario = Math.floor(Math.random() * 100)
@@ -37,14 +45,17 @@ export const Register = () => {
                                 <Form onSubmit={handleSubmit}>
                                     <div className='mb-3'>
                                         <label>Nombre</label>
+                                        <ErrorMessage className='text-danger fw-bold' name="nombre" component="div" />
                                         <input type="text" onChange={handleChange} name='nombre' placeholder='Ingresa tu nombre' className='form-control' style={{ background: "linear-gradient(#ffffff, #9ed1d6)", borderRadius: "10px" }} />
                                     </div>
                                     <div className='mb-3'>
                                         <label>Correo Electrónico</label>
+                                        <ErrorMessage className='text-danger fw-bold' name="correo" component="div" />
                                         <input type="correo" onChange={handleChange} name='correo' placeholder='Ingresa tu correo' className='form-control' style={{ background: "linear-gradient(#ffffff, #9ed1d6)", borderRadius: "10px" }} />
                                     </div>
                                     <div className='mb-3'>
                                         <label>Contraseña</label>
+                                        <ErrorMessage className='text-danger fw-bold' name="contraseña" component="div" />
                                         <input type="password" onChange={handleChange} name='contraseña' placeholder='Ingresa una contraseña' className='form-control' style={{ background: "linear-gradient(#ffffff, #9ed1d6)", borderRadius: "10px" }} />
                                     </div>
                                     <div className='d-grid'>

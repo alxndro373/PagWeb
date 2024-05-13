@@ -1,5 +1,5 @@
 import { Link,useNavigate,Navigate } from 'react-router-dom'
-import { Formik, Form } from 'formik'
+import { Formik, Form, ErrorMessage } from 'formik'
 import Nav from '../components/Navbar.jsx'
 import logo from '../assets/ADU.png'
 import { useUsuario } from '../../hooks/useUsuario.js'
@@ -22,15 +22,22 @@ export const Login = () => {
                         <h3 className='text-center mb-4 fw-bold'>Iniciar Sesión</h3>
                         <Formik
                             initialValues={{ correo: "", contraseña: "" }}
+                            validate={values => {
+                                const errors = {}
+                                if(!values.correo) errors.correo = 'Requerido'
+                                else if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.correo)) errors.correo = 'correo invalido'
+                                return errors
+                            }}
                             onSubmit={async(values) => {
                                 try {
                                     const res = await handleGetPasswordAndName(values.correo)
+                                    if(res == undefined) alert("correo no registrado")
                                     const contra = res.data.contraseña
                                     if(contra === values.contraseña){
                                         changeAuthenticated(true)
                                         getName(res.data.nombre)
                                         res.data.nombre === 'administrador' ? navigate("/administrador") : navigate("/")
-                                    }else alert("Correo o Contraseña incorrectas")
+                                    }else alert("Contraseña incorrecta")
                                 } catch (error) {
                                     console.log(error)
                                 }
@@ -40,6 +47,7 @@ export const Login = () => {
                                 <Form onSubmit={handleSubmit}>
                                     <div className='mb-3'>
                                         <label className='form-label'>Correo Electronico</label>
+                                        <ErrorMessage className='text-danger fw-bold' name="correo" component="div" />
                                         <input className='form-control' type="text" name='correo' placeholder='Correo Electronico' onChange={handleChange} style={{ background: "linear-gradient(#ffffff, #9ed1d6)", borderRadius: "10px" }} />
                                     </div>
                                     <div className='mb-3'>
