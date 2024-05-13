@@ -7,3 +7,5 @@ export const createViajeRequest = async (viajes) => await axios.post('http://loc
 export const updateViajeRequest = async (id,newFields) => await axios.put(`http://localhost:4000/viaje/${id}`,newFields)
 
 export const deleteViajeRequest = async (id) => await axios.delete(`http://localhost:4000/viaje/${id}`)
+
+export const validOriginAndDestination = async (origin,destination) => await axios.get(`http://localhost:4000/viajes/${origin}/${destination}`)
