@@ -1,6 +1,20 @@
 
 import { pool } from "../db.js"
 
+export const validOrigenAndDestino = async (req,res) => {
+    try {
+        const [origenRes] = await pool.query('SELECT idCiudad FROM ciudad WHERE estado = ?', [req.params.origen])
+        const [destinoRes] = await pool.query('SELECT idCiudad FROM ciudad WHERE estado = ?', [req.params.destino])
+        if (origenRes.length === 0 || destinoRes.length === 0) return res.status(404).json({ message: "origen o  destino no econtrado" })
+        const idOrigen = origenRes[0].idCiudad
+        const idDestino = destinoRes[0].idCiudad
+        const [result] = await pool.query('SELECT hora,precio FROM viaje WHERE idOrigen = ? && idDestino = ?', [idOrigen,idDestino])
+        res.json(result)  
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export const getViajes = async (req, res) => {
     try {
         const [result] = await pool.query('SELECT * FROM viaje')
@@ -22,19 +36,20 @@ export const getViaje = async (req, res) => {
 
 export const createViaje = async (req, res) => {
     try {
-        const {idViaje, Origen, Destino, idCamion, fecha, hora } = req.body
+        const {idViaje, Origen, Destino, idCamion, fecha, hora,precio } = req.body
         const [origenRes] = await pool.query('SELECT idCiudad FROM ciudad where estado = ?', [Origen])
         const idOrigen = origenRes[0].idCiudad
         const [destinoRes] = await pool.query('SELECT idCiudad FROM ciudad where estado = ?', [Destino])
         const idDestino = destinoRes[0].idCiudad
-        const [result] = await pool.query('INSERT INTO viaje(idViaje,idOrigen,idDestino,idCamion,fecha,hora) values (?,?,?,?,?,?)', [idViaje,idOrigen,idDestino,idCamion,fecha,hora])
+        const [result] = await pool.query('INSERT INTO viaje(idViaje,idOrigen,idDestino,idCamion,fecha,hora,precio) values (?,?,?,?,?,?,?)', [idViaje,idOrigen,idDestino,idCamion,fecha,hora,precio])
         res.json({
             idViaje: result.insertId,
             idOrigen,
             idDestino,
             idCamion,
             fecha,
-            hora
+            hora,
+            precio
         })
     } catch (error) {
         console.log(error)
