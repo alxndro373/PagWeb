@@ -10,7 +10,7 @@ export const Cuidades = () => {
     const saveAction = () => {setAction('Guardar')}
     const showAction = () => {setAction('Consultar')}
 
-    const {cuidades, fetchCuidades, handleCreateCuidad,handleDeleteCuidad, handleUpdateCuidad} = useCuidad()    
+    const {ciudades, fetchCuidades, handleCreateCuidad,handleDeleteCuidad, handleUpdateCuidad} = useCuidad()    
     
     let initalValues = {idCiudad: null,estado: ""}
     let fields = {idCuidad: null, Estado:""}
@@ -25,7 +25,7 @@ export const Cuidades = () => {
             </div>
         </div>
         
-        {action != "" ? <Table title={'Lista de Ciudades'} onFetch={fetchCuidades} onUpdate={handleUpdateCuidad} initialValues={initalValues} cols={fields} holders={fields} values={cuidades} onDelete={handleDeleteCuidad}/> : null}       
+        {action != "" ? <Table title={'Lista de Ciudades'} onFetch={fetchCuidades} onUpdate={handleUpdateCuidad} initialValues={initalValues} cols={fields} holders={fields} values={ciudades} onDelete={handleDeleteCuidad}/> : null}       
         </>
     )
 }

@@ -5,15 +5,20 @@ import p3 from '../assets/collage.jpeg'
 import fondo from '../assets/backTravel.jpeg'
 import { DropDown } from '../components/DropDown.jsx'
 import { useCuidad } from '../../hooks/useCuidad.js'
-import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 export const Home = () => {
 
+    const navigate = useNavigate()
     const {ciudades,fetchCuidades} = useCuidad()
+    const [destination,setDestination] = useState('Veracruz')
+    const [origin,setOrigin] = useState('Veracruz')
+    const handleSelectChangeOrigin = (value) => {setOrigin(value)}
+    const handleSelectChangeDestination = (value) => {setDestination(value)}
     useEffect(() => {
         fetchCuidades()
     },[])
    
-
     return (
         <>
             <Nav />
@@ -43,10 +48,10 @@ export const Home = () => {
 
                             <div className='row' style={{ height: "70%" }}>
                                 <div className='col-md-10 offset-md-9 ' style={{ background: "" }}> {/* #E3E4E5 */}
-                                    < DropDown title={"Origen"} items={ciudades}/>
-                                    < DropDown title={"Destino"} items={ciudades}/>
+                                    < DropDown title={"Origen"} items={ciudades} onChange={handleSelectChangeOrigin}/>
+                                    < DropDown title={"Destino"} items={ciudades} onChange={handleSelectChangeDestination}/>
                                     <div className='d-grid mb-2'>
-                                        <button className='btn fw-bold' style={{ background: "linear-gradient(#ffffff, #9ed1d6)", maxWidth: "40%", border: "none", marginLeft: "30%", marginTop: "5%" }}>Buscar</button>
+                                        <button onClick={() => navigate(`viajes/${origin}/${destination}`)} className='btn fw-bold' style={{ background: "linear-gradient(#ffffff, #9ed1d6)", maxWidth: "40%", border: "none", marginLeft: "30%", marginTop: "5%" }}>Buscar</button>
                                     </div>
                                 </div>
                             </div>

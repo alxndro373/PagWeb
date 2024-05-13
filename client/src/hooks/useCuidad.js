@@ -2,7 +2,7 @@ import { useState } from "react"
 import {createCuidadRequest,getCuidadesRequest, deleteCuidadRequest, updateCuidadRequest} from '../api/cuidades.api'
 
 export const useCuidad = () => {
-    const [cuidades, setCuidades] = useState([])
+    const [ciudades, setCuidades] = useState([])
 
     const fetchCuidades = async () => {
         const res = await getCuidadesRequest()
@@ -24,10 +24,10 @@ export const useCuidad = () => {
     }
 
     return {
-        cuidades,
+        ciudades,
         fetchCuidades,
         handleCreateCuidad,
         handleDeleteCuidad,
-        handleUpdateCuidad
+        handleUpdateCuidad,
     }
 }

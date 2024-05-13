@@ -11,8 +11,8 @@ export const Viajes = () => {
     const showAction = () => {setAction('Consultar')}
     const {viajes, fetchViajes,handleCreateViaje, handleDeleteViaje, handleUpdateViaje} = useViaje()
     
-    let fields = {idViaje: null,Origen:"",Destino:"",idCamion:null,fecha:"",hora:""}
-    let holders = {idViaje:null,Origen:"",Destino:"",idCamion:null,"AAAA-MM-DD":"","HH:MM:SS":""}
+    let fields = {idViaje: null,Origen:"",Destino:"",idCamion:null,fecha:"",hora:"",precio:0}
+    let holders = {idViaje:null,Origen:"",Destino:"",idCamion:null,"AAAA-MM-DD":"","HH:MM:SS":"",precio:0}
     return (
         <>
         <Nav />
