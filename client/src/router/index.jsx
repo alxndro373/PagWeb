@@ -13,6 +13,7 @@ import { Faq } from "../user/pages/Faq"
 import { ProtectedRoute } from "../administrador/routes/ProtectedRoute";
 import { Terminal } from "../user/pages/Terminal";
 import { Viaje } from "../user/pages/Viaje";
+import { Asiento } from "../user/pages/Asiento";
 
 
 export const router = createBrowserRouter([
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
     {
         path:"Viajes/:origen/:destino",
         element: <Viaje />
+    },
+    {
+        path:"Viajes/:origen/:destino/Asientos",
+        element: <Asiento />
     },
     {
         path: "/administrador",
