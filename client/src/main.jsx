@@ -4,6 +4,7 @@ import './index.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import {router} from './router/'
 import { AuthProvider } from './auth/AuthProvider'
+import { ViajeProvider } from './user/context/ViajeProvider'
 import {
   RouterProvider
 } from 'react-router-dom'
@@ -12,7 +13,9 @@ import {
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-      <RouterProvider router={router}/>
+      <ViajeProvider>
+        <RouterProvider router={router}/>
+      </ViajeProvider>
     </AuthProvider>
   </React.StrictMode>,
 )
