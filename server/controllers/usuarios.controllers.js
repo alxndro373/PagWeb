@@ -58,7 +58,7 @@ export const deleteUsuario = async (req, res) => {
 
 export const getPasswordAndName = async (req,res) => {
     try {
-        const [result] = await pool.query('SELECT nombre,contraseña FROM usuario WHERE correo = ?',[req.params.correo])
+        const [result] = await pool.query('SELECT idUsuario,nombre,contraseña FROM usuario WHERE correo = ?',[req.params.correo])
         if (result.length === 0) return res.status(404).json({ message: "password not found" })
         res.json(result[0])
     } catch (error) {
