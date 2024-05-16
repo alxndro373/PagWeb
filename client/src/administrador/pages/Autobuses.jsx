@@ -6,8 +6,8 @@ import {useAutobus} from '../../hooks/useAutobus.js'
 
 export const Autobuses = () => {
 
-    const initialValues = {idcamion:null,placa:"",numAsientos:0}
-    const fields = {idAutobus:null,place:"","Número de Asientos":0}
+    const initialValues = {idcamion:null,placa:""}
+    const fields = {idAutobus:null,placa:""}
     const {autobuses,fetchAutobuses,handleCreateAutobus,handleDeleteAutobus,handleUpdateAutobus} = useAutobus()
 
     const [action, setAction] = useState("")

@@ -22,12 +22,11 @@ export const getAutobus = async (req, res) => {
 
 export const createAutobus = async (req, res) => {
     try {
-        const { idcamion, placa, numAsientos } = req.body
-        const [result] = await pool.query('INSERT INTO camion(idcamion,placa,numAsientos) values (?,?,?)', [idcamion, placa, numAsientos])
+        const { idcamion, placa} = req.body
+        const [result] = await pool.query('INSERT INTO camion(idcamion,placa) values (?,?)', [idcamion, placa])
         res.json({
             idcamion: result.insertId,
-            placa,
-            numAsientos
+            placa
         })
     } catch (error) {
         console.log(error)
