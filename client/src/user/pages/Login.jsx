@@ -7,7 +7,7 @@ import { useAuth } from '../../auth/AuthProvider.jsx'
 
 export const Login = () => {
     const {handleGetPasswordAndName} = useUsuario()
-    const {changeAuthenticated,getName,isAuthenticated} = useAuth()
+    const {changeAuthenticated,getName,isAuthenticated, setId} = useAuth()
     const navigate = useNavigate()
     if(isAuthenticated) return <Navigate to="/" />
     return (
@@ -31,11 +31,11 @@ export const Login = () => {
                             onSubmit={async(values) => {
                                 try {
                                     const res = await handleGetPasswordAndName(values.correo)
-                                    if(res == undefined) alert("correo no registrado")
                                     const contra = res.data.contraseña
                                     if(contra === values.contraseña){
                                         changeAuthenticated(true)
                                         getName(res.data.nombre)
+                                        setId(res.data.idUsuario)
                                         res.data.nombre === 'administrador' ? navigate("/administrador") : navigate("/")
                                     }else alert("Contraseña incorrecta")
                                 } catch (error) {
