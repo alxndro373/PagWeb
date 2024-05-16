@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Nav from '../components/Navbar'
 import Maps from '../components/Maps'
+import { DropDown } from '../components/DropDown.jsx'
+import { useCuidad } from '../../hooks/useCuidad.js'
 import i1 from '../assets/busIcon.png'
 
 export const Terminal = () => {
+    const { ciudades, fetchCuidades } = useCuidad()
+    const [selectedCity, setSelectedCity] = useState("")
+
+    const handleSelectEstado = (value) => {
+        setSelectedCity(value)
+    }
+
+    useEffect(() => {
+        fetchCuidades()
+    }, [])
+
     return(
         <>
             <Nav />
@@ -17,12 +30,12 @@ export const Terminal = () => {
 
                 <div className='' style={{maxWidth:"30%", marginLeft:"10%", fontSize:"19px"}}>
                     <label htmlFor="origen">¿Dónde te encuentras?</label>
-                    <select name="origen" id="idOrigen" style={{width:"100%", background:"linear-gradient(#ffffff, #9ed1d6)", borderRadius:"5px", border:"none"}}><option value="" disabled selected>Selecciona una opción</option></select>
-                    <div className='' style={{transform:"translate(650px, -30px)"}}>
-                        <Maps />
+                    <DropDown title={"Selecciona una opción"} items={ciudades} onChange={handleSelectEstado}/>
+                    <div className='' style={{ marginTop: "-10%", transform: "translate(650px, -30px)" }}>
+                        <Maps selectedCity={selectedCity} />
                     </div>
-                </div>
+                </div>  
             </div>
         </>
-    )
-}
+    );
+};

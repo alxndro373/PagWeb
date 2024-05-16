@@ -4,6 +4,7 @@ import { Cuidades } from "../administrador/pages/Cuidades";
 import { Usuario } from "../administrador/pages/Usuario";
 import { Viajes } from "../administrador/pages/Viajes";
 import { Boletos } from "../administrador/pages/Boleto";
+import { Terminales } from "../administrador/pages/Terminales";
 import ErrorPage from '../pages/ErrorPage'
 import { Register } from "../user/pages/Register";
 import { Login } from "../user/pages/Login";
@@ -70,6 +71,10 @@ export const router = createBrowserRouter([
             {
                 path: "/administrador/usuario",
                 element: <Usuario />
+            },
+            {
+                path: "/administrador/terminales",
+                element: <Terminales />
             },
             {
                 path: "/administrador/viaje",

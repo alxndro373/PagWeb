@@ -12,8 +12,8 @@ export const Cuidades = () => {
 
     const {ciudades, fetchCuidades, handleCreateCuidad,handleDeleteCuidad, handleUpdateCuidad} = useCuidad()    
     
-    let initalValues = {idCiudad: null,estado: ""}
-    let fields = {idCuidad: null, Estado:""}
+    let initalValues = {idCiudad: null,estado: "", latitud:"", longitud:""}
+    let fields = {idCuidad: null, Estado:"", Latitud:"", Longitud:""}
     return (
         <>
         <Nav />

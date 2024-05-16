@@ -1,44 +1,78 @@
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
+import "leaflet/dist/leaflet.css"
+import { useState, useEffect } from "react"
+import { useCuidad } from '../../hooks/useCuidad.js'
+import { useTerminales } from '../../hooks/useTerminales.js'
 
-const Maps = () => {
+const Maps = ({ selectedCity }) => {
+    const initialCoordinates = { lat: 25.7530096, lng: -106.1030617 }
+    const initialZoom = 4
+    const [cityCoordinates, setCityCoordinates] = useState(initialCoordinates)
+    const [zoom, setZoom] = useState(initialZoom)
+    const [forceRerender, setForceRerender] = useState(false) // Nuevo estado para forzar la re-renderización
+    const { ciudades, fetchCuidades } = useCuidad()
+    const { terminales, fetchTerminales } = useTerminales()
 
-    const terminals = [
-        { name: 'ADU Veracruz', location: { lat: 19.178482, lng: -96.134481 }},
-        { name: 'ADU Boca del Río', location: { lat: 19.141268, lng: -96.109402 }},
-        { name: 'ADU Aeropuerto', location: { lat: 19.1422435, lng: -96.1837179 }},
-        { name: 'ADU - Ciudad de México', location: { lat: 19.417125, lng: -99.080298 }},
-        { name: 'ADU Norte - Ciudad de México', location: { lat: 19.451769, lng: -99.096554 }},
-        { name: 'Terminal de Autobuses del Norte - Ciudad de México', location: { lat: 19.456153, lng: -99.146155 }},
-        { name: 'ADU Guadalajara - Jalisco', location: { lat: 20.658735, lng: -103.328375 }},
-        { name: 'ADU Cancún - Quintana Roo', location: { lat: 21.160895, lng: -86.847641 }},
-        { name: 'ADU Mérida - Yucatán', location: { lat: 20.983702, lng: -89.618767 }},
-        { name: 'ADU Puebla - Puebla', location: { lat: 19.055842, lng: -98.216698 }},
-        { name: 'ADU Oaxaca - Oaxaca', location: { lat: 17.067499, lng: -96.724551 }},
-        { name: 'ADU San Cristóbal - Chiapas', location: { lat: 16.741422, lng: -92.633486 }},
-        { name: 'ADU Tampico - Tamaulipas', location: { lat: 22.246759, lng: -97.861381 }},
-        { name: 'ADU Villahermosa - Tabasco', location: { lat: 17.981092, lng: -92.932459 }}
-    ];
+    useEffect(() => {
+        fetchCuidades()
+    }, [])
 
-    return(
+    useEffect(() => {
+        fetchTerminales()
+    })
+
+    useEffect(() => {
+        if (selectedCity) {
+            const coordinates = mapCityToCoordinates(selectedCity);
+            if (coordinates) {
+                setCityCoordinates({ lat: coordinates[0], lng: coordinates[1] })
+                setZoom(10)
+                setForceRerender(prevState => !prevState); // Cambiar el estado para forzar la re-renderización
+            }
+        } else {
+            setCityCoordinates(initialCoordinates);
+            setZoom(initialZoom);
+            setForceRerender(prevState => !prevState); // Cambiar el estado para forzar la re-renderización
+        }
+    }, [selectedCity]);
+
+    const mapCityToCoordinates = (city) => {
+        const cityData = ciudades.find(c => c.estado === city)
+        if (cityData) {
+            return [cityData.latitud, cityData.longitud]
+        } else {
+            console.log("Coordenadas para city no entradas")
+            return null
+        }
+    }
+
+    return (
         <>
-            <MapContainer 
-                center={{lat: "25.7530096", lng: "-106.1030617"}} 
-                zoom={4}
-                style={{width: "500px", height:"500px"}}
+            <MapContainer
+                key={`${cityCoordinates.lat}-${cityCoordinates.lng}`} // Utilizamos las coordenadas como parte de la clave para forzar la re-renderización
+                center={cityCoordinates}
+                zoom={zoom}
+                style={{ width: "500px", height: "500px" }}
             >
-                <TileLayer 
+                <TileLayer
                     url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 />
-                {terminals.map(terminal => (
-                <Marker key={terminal.name} position={terminal.location}>
-                    <Popup>{terminal.name}</Popup>
-                </Marker>
+
+                {selectedCity && (
+                    <Marker position={cityCoordinates}>
+                        <Popup>{selectedCity}</Popup>
+                    </Marker>
+                )}
+
+                {terminales.map(terminales => (
+                    <Marker key={terminales.id} position={[terminales.latitud, terminales.longitud]}>
+                        <Popup>{terminales.nombre}</Popup>
+                    </Marker>
                 ))}
             </MapContainer>
         </>
     );
 };
 
-export default Maps;
+export default Maps

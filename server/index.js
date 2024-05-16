@@ -6,6 +6,7 @@ import autobusesRoutes from './routes/autobuses.routes.js'
 import usuariosRoutes from './routes/usuarios.routes.js'
 import viajesRoutes from './routes/viajes.routes.js'
 import boletosRoutes from './routes/boletos.routes.js'
+import terminalesRoutes from './routes/terminales.routes.js'
 
 const app = express()
 
@@ -16,6 +17,7 @@ app.use(autobusesRoutes)
 app.use(usuariosRoutes)
 app.use(viajesRoutes)
 app.use(boletosRoutes)
+app.use(terminalesRoutes)
 
 app.listen(PORT)
 

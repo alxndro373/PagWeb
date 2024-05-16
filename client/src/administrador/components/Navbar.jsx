@@ -24,6 +24,9 @@ const Nav = () => {
                     <Link className="nav-link text-body" to="/administrador/cuidad">Ciudades</Link>
                 </li>
                 <li className="nav-item me-5">
+                    <Link className="nav-link text-body" to="/administrador/terminales">Terminales</Link>
+                </li>
+                <li className="nav-item me-5">
                     <Link className="nav-link text-body" to="/administrador/usuario">Usuarios</Link>
                 </li>
                 <li className="nav-item">
