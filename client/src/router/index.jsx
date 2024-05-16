@@ -14,6 +14,7 @@ import { ProtectedRoute } from "../administrador/routes/ProtectedRoute";
 import { Terminal } from "../user/pages/Terminal";
 import { Viaje } from "../user/pages/Viaje";
 import { Asiento } from "../user/pages/Asiento";
+import {Boleto} from "../user/pages/Boletos"
 
 
 export const router = createBrowserRouter([
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
     {
         path: "Register",
         element: <Register />
+    },
+    {
+        path: "Boletos",
+        element: < Boleto />
     },
     {
         path:"Viajes/:origen/:destino",
