@@ -1,5 +1,5 @@
 import { useState } from "react"
-import {createBoletoRequest,getBoletosRequest, deleteBoletoRequest, updateBoletoRequest} from '../api/boletos.api'
+import {createBoletoRequest,getBoletosRequest, deleteBoletoRequest, updateBoletoRequest, getBoletosByUserRequest, getOriginAndDestinationRequest, getAsientoByViajeRequest} from '../api/boletos.api'
 
 export const useBoleto = () => {
     const [boletos, setBoletos] = useState([])
@@ -9,9 +9,26 @@ export const useBoleto = () => {
         setBoletos(res.data)
     }
     const handleCreateBoleto = async (values) => {
-        await createBoletoRequest(values)
+        await createBoletoRequest(values) 
         fetchBoletos()
     }
+    const buyBoleto = async (values) => {
+        const res = await createBoletoRequest(values)
+        return res
+    }
+    const handleGetAsientoByViaje = async (idViaje) => {
+        const res = await getAsientoByViajeRequest(idViaje)
+        return res
+    }
+    const fetchBoletosByUser = async (idUsuario) => {
+        const res = await getBoletosByUserRequest(idUsuario)
+        return res
+    }
+    const handleOriginAndDestination = async (idViaje) => {
+        const res = await getOriginAndDestinationRequest(idViaje)
+        return res
+    }
+
     const handleDeleteBoleto = async (id) => {
         await deleteBoletoRequest(id)
         fetchBoletos()
@@ -27,6 +44,10 @@ export const useBoleto = () => {
         fetchBoletos,
         handleCreateBoleto,
         handleDeleteBoleto,
-        handleUpdateBoleto
+        handleUpdateBoleto,
+        buyBoleto,
+        fetchBoletosByUser,
+        handleOriginAndDestination,
+        handleGetAsientoByViaje
     }
 }
