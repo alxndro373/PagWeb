@@ -10,7 +10,7 @@ export const Viaje = () => {
     const navigate = useNavigate()
     const [viajeData, setViajeData] = useState([])
     const { handleValidOriginAndDestination } = useViaje()
-    const {updateHora,updatePrecio,updateFecha} = useViajeGlobal()
+    const {updateIdViaje,updateHora,updatePrecio,updateFecha} = useViajeGlobal()
     useEffect(() => {
         const loadData = async () => {
             const res = await handleValidOriginAndDestination(origen, destino)
@@ -23,7 +23,8 @@ export const Viaje = () => {
 
     if (viajeData.length == 0) return <p className="display-2">Viajes no econtrados</p>
 
-    const viajeSeleccionado = (hora,precio,fecha) => {
+    const viajeSeleccionado = (idViaje,hora,precio,fecha) => {
+        updateIdViaje(idViaje)
         updateHora(hora)
         updatePrecio(precio)
         updateFecha(fecha)
@@ -44,7 +45,7 @@ export const Viaje = () => {
                                 <div className="card-body">
                                     <h5 className="card-title">{`${origen} a ${destino}`}</h5>
                                     <p className="card-text">{`Fecha: ${data.fecha.split('T')[0]} Hora: ${data.hora}`}</p>
-                                    <button onClick={() => viajeSeleccionado(data.hora,data.precio,data.fecha.split('T')[0])} className="btn btn-outline-danger">{`Comprar por $${data.precio} mxn`}</button>
+                                    <button onClick={() => viajeSeleccionado(data.idViaje,data.hora,data.precio,data.fecha.split('T')[0])} className="btn btn-outline-danger">{`Comprar por $${data.precio} mxn`}</button>
                                 </div>
                             </div>
                         </div>
