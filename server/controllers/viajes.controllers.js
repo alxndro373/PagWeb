@@ -8,7 +8,7 @@ export const validOrigenAndDestino = async (req,res) => {
         if (origenRes.length === 0 || destinoRes.length === 0) return res.status(404).json({ message: "origen o  destino no econtrado" })
         const idOrigen = origenRes[0].idCiudad
         const idDestino = destinoRes[0].idCiudad
-        const [result] = await pool.query('SELECT fecha,hora,precio FROM viaje WHERE idOrigen = ? && idDestino = ?', [idOrigen,idDestino])
+        const [result] = await pool.query('SELECT idViaje,fecha,hora,precio FROM viaje WHERE idOrigen = ? && idDestino = ?', [idOrigen,idDestino])
         res.json(result)  
     } catch (error) {
         console.log(error)
