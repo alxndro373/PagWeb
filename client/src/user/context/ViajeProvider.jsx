@@ -4,15 +4,17 @@ const viajeContext = createContext()
 
 export const ViajeProvider = ({children}) => {
 
-    const [precioViaje, setPrecioViaje] = useState(null)
-    const [horaViaje, setHoraViaje] = useState(null)
-    const [fechaViaje, setFechaViaje] = useState(null)
+    const [idViaje, setIdViaje] = useState(null)
+    const [precio, setPrecioViaje] = useState(null)
+    const [hora, setHoraViaje] = useState(null)
+    const [fecha, setFechaViaje] = useState(null)
+    const updateIdViaje = (idViaje) => {setIdViaje(idViaje)}
     const updateHora = (hora) => {setHoraViaje(hora)}
     const updatePrecio = (precio) => {setPrecioViaje(precio)}
     const updateFecha = (fecha) => {setFechaViaje(fecha)}
 
     return (
-        <viajeContext.Provider value={{precioViaje,horaViaje,updateHora,fechaViaje,updateFecha,updatePrecio}}>
+        <viajeContext.Provider value={{idViaje,updateIdViaje,precio,hora,updateHora,fecha,updateFecha,updatePrecio}}>
             {children}
         </viajeContext.Provider>
     )
