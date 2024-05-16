@@ -11,8 +11,8 @@ export const Boletos = () => {
     const {boletos, fetchBoletos,handleCreateBoleto, handleDeleteBoleto, handleUpdateBoleto} = useBoleto()
     
     let initialValues = {idBoleto:null,idUsuario:null,idViaje:null,asiento:0,fecha:"",hora:"",precio:0.0}
-    let fields = {idBoleto:null,idUsuario:null,idViaje:null,"Número de asiento":0,fecha:"",hora:"",precio:0.0}
-    let holders = {idBoleto:null,idUsuario:null,idViaje:null,"Número de asiento":0,"AAA-MM-DD":"","HH:MM:SS":"",precio:0.0}
+    let fields = {idBoleto:null,idUsuario:null,idViaje:null, "Número de asiento":0,fecha:"",hora:"",precio:0.0}
+    let holders = {idBoleto:null,idUsuario:null,idViaje:null, "Número de asiento":0,"AAA-MM-DD":"","HH:MM:SS":"",precio:0.0}
     return (
         <>
         <Nav />

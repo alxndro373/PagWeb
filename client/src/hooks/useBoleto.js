@@ -5,12 +5,34 @@ export const useBoleto = () => {
     const [boletos, setBoletos] = useState([])
 
     const fetchBoletos = async () => {
-        const res = await getBoletosRequest()
-        setBoletos(res.data)
+        try {
+            const res = await getBoletosRequest()
+            setBoletos(res.data)
+        } catch (error) {
+            console.error("Error al obtener los boletos")
+        }
     }
     const handleCreateBoleto = async (values) => {
-        await createBoletoRequest(values) 
-        fetchBoletos()
+        try {
+            if (!values.idBoleto || !values.idUsuario || !values.idViaje || !values.asiento || !values.fecha || !values.hora || !values.precio) {
+                alert("Todos los campos son obligatorios")
+                return
+            }
+            
+            const res = await createBoletoRequest(values) 
+
+            if (res.status === 200) {
+                fetchBoletos()
+                alert("Boleto registrado correctamente")
+            } else if (res.status === 400 && res.data.message === "El asiento ya está ocupado") {
+                setDuplicateError(true)
+            } else {
+                alert("Error al registrar el boleto")
+            }
+        } catch (error) {
+            console.error("Error al registrar el boleto", error)
+            alert("Error al registrar el boleto")
+        }
     }
     const buyBoleto = async (values) => {
         const res = await createBoletoRequest(values)
@@ -30,13 +52,27 @@ export const useBoleto = () => {
     }
 
     const handleDeleteBoleto = async (id) => {
-        await deleteBoletoRequest(id)
-        fetchBoletos()
+        try {
+            await deleteBoletoRequest(id)
+            fetchBoletos()
+            alert("Boleto eliminado correctamente")
+        } catch (error) {
+            console.error("Error al eliminar el boleto", error)
+            alert("Error al eliminar el boleto")
+        }
     }
     const handleUpdateBoleto = async (id,fields) => {
-        const result = await updateBoletoRequest(id,fields)
-        if(result.status == 200 && result.data.affectedRows > 0) alert("Actualizado Correctamente")
-        else alert("Actualizacion Fallida")
+        try {
+            const result = await updateBoletoRequest(id,fields)
+            if(result.status == 200 && result.data.affectedRows > 0){
+                alert("Actualizado Correctamente")
+            } else{
+                alert("Actualizacion Fallida")
+            } 
+        } catch (error) {
+            console.error("Error al actualizar el boleto", error)
+            alert("Error al actualizar el boleto")
+        }
     }
 
     return {
