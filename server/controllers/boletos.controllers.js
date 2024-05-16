@@ -8,6 +8,36 @@ export const getBoletos = async (req, res) => {
         console.log(error)
     }
 }
+export const getAsientoByViaje = async (req,res) => {
+    try {
+        const [result] = await pool.query("SELECT asiento FROM boleto WHERE idViaje = ?", [req.params.idViaje])
+        res.json(result)
+    } catch (error) {
+        console.log(error)
+    }
+}
+export const getBoletoByUser = async (req,res) => {
+    try {
+        const [result] = await pool.query("SELECT * FROM boleto where idUsuario = ?", [req.params.idUsuario])
+        res.json(result) 
+    } catch (error) {
+        console.log(error)
+    }
+}
+export const getOriginAndDestination = async (req,res) => {
+    try {
+        const [result] = await pool.query("SELECT * FROM viaje WHERE idViaje = ?", [req.params.id])
+        const idOrigen = result[0].idOrigen
+        const idDestino = result[0].idDestino
+        const [origenRes] = await pool.query("SELECT estado FROM ciudad WHERE idCiudad = ?", [idOrigen])
+        const [destinoRes] = await pool.query("SELECT estado FROM ciudad WHERE idCiudad = ?", [idDestino])
+        const origen = origenRes[0].estado
+        const destino = destinoRes[0].estado
+        res.json({origen,destino})   
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 export const getBoleto = async (req, res) => {
     try {
