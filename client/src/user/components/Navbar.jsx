@@ -21,6 +21,10 @@ const Nav = () => {
                     <Link className="nav-link text-body" to="/Atencion">ATENCIÓN</Link>
                     <div className="divider"></div>
                 </li>
+                <li className="nav-item me-5 border-end pe">
+                    <Link className="nav-link text-body" to="/Boletos">MIS BOLETOS</Link>
+                    <div className="divider"></div>
+                </li>
                 {
                     !auth.isAuthenticated ? (
                         <li className="nav-item me-5">
